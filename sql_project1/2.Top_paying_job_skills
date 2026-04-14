@@ -1,0 +1,31 @@
+
+/* Top paying job skills for data analyst roles
+-Identify the top 10 highest paying data analyst roles .
+- and the sksills required for these rolls
+-Focus on job postings with specified salary (remove nulls)
+-Highlight the top 10 highest paying skills for data analyst jobs, offering insight into the most valuable skills in the data analysis field.
+*/
+
+with top_jobs as( 
+select 
+      job_id,
+      job_title_short,
+      salary_year_avg,  
+      name as company_name
+from job_postings_fact
+left join company_dim on job_postings_fact.company_id = company_dim.company_id
+where 
+    job_title_short ='Data Analyst' AND
+    job_location = 'Anywhere' and 
+    salary_year_avg is not null
+order by 
+    salary_year_avg desc
+limit 10
+)
+select 
+    top_jobs.*,
+    skills
+from top_jobs
+inner join skills_job_dim on top_jobs.job_id = skills_job_dim.job_id
+inner join  skills_dim on skills_job_dim.skill_id = skills_dim.skill_id
+order by salary_year_avg desc;
