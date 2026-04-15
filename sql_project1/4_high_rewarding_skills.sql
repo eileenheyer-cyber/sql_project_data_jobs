@@ -7,7 +7,7 @@ find out skills that are most financially rewarding
 */
 
 
-/*
+
  select 
     skills_dim.skills,
     count (DISTINCT job_postings_fact.job_id) as job_count,
@@ -21,8 +21,8 @@ inner join
  salary_year_avg is not NULL and job_title_short = 'Data Analyst'
  group by  skills
  order by salary_average DESC
- limit 10
- */
+ limit 25
+
 
 
 /*
@@ -40,8 +40,7 @@ high salary, low demand skills
 That is why adding count was important — without it, svn at 400000 looks amazing, but with job_count = 1, you know it is probably just one unusual posting.
 new Query:
 */
-
-
+/*
 select
     skills_dim.skills,
     count(distinct job_postings_fact.job_id) as job_count,
@@ -56,3 +55,4 @@ where salary_year_avg is not null
 group by skills_dim.skills
 having count(distinct job_postings_fact.job_id) >= 5
 order by salary_average desc; 
+*/

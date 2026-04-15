@@ -6,7 +6,7 @@
 
 SELECT 
      skills,
-     count(*) as skills_demand
+     count(*) as demand_count
 from 
      job_postings_fact
 inner join
@@ -18,5 +18,5 @@ where
 group by 
    skills
 order by 
-   skills_demand DESC
+   demand_count DESC
 limit 5
