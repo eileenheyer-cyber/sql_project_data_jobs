@@ -70,5 +70,6 @@ inner join
  group by skills_dim.skill_id
  having count(*) > 10
  order by 
- salary_average desc
+ salary_average desc,
+ demand_count desc;
 
